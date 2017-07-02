@@ -5,16 +5,16 @@ var str = "Hello, playground"
 var counter = 0;
 var secondCounter = 0;
 
-for (var i = 0; i < 10; i++) {
+for i in 0 ..< 10 {
     counter += i;
-    println("Counter: \(counter)");
+    print("Counter: \(counter)")
     for j in 1...10 {
-        secondCounter += j;
+        secondCounter += j
     }
 }
 
-let textField = UITextField(frame: CGRectMake(0, 0, 200, 50));
-textField.text = "Hello";
-textField.borderStyle = UITextBorderStyle.Bezel;
+let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+textField.text = "Hello"
+textField.borderStyle = UITextBorderStyle.bezel
 
-textField;
+textField
