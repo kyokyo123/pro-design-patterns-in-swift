@@ -1,13 +1,13 @@
-import Foundation;
+import Foundation 
 
-var myProduct = ("Kayak", "A boat for one person", "Watersports", 275.0, 10);
+var myProduct = ("Kayak", "A boat for one person", "Watersports", 275.0, 10) 
 
 func writeProductDetails(product: (String, String, String, Double, Int)) {
-    println("Name: \(product.0)");
-    println("Description: \(product.1)");
-    println("Category: \(product.2)");
-    let formattedPrice = NSString(format: "$%.2lf", product.3);
-    println("Price: \(formattedPrice)");
+    print("Name: \(product.0)")
+    print("Description: \(product.1)")
+    print("Category: \(product.2)")
+    let formattedPrice = NSString(format: "$%.2lf", product.3) 
+    print("Price: \(formattedPrice)")
 }
 
-writeProductDetails(myProduct);
+writeProductDetails(product: myProduct) 
