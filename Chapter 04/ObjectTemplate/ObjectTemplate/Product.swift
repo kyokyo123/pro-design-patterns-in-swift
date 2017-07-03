@@ -2,7 +2,7 @@ class Product {
     
     var name:String;
     var price:Double;
-    private var stockBackingValue:Int = 0;
+    fileprivate var stockBackingValue:Int = 0;
     
     var stock:Int {
         get {
@@ -19,7 +19,7 @@ class Product {
         self.stock = stock;
     }
     
-    func calculateTax(rate: Double) -> Double {
+    func calculateTax(_ rate: Double) -> Double {
         return min(10, self.price * rate);
     }
     

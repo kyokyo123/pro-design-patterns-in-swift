@@ -3,7 +3,7 @@ var products = [
     Product(name: "Lifejacket", price: 48.95, stock: 14),
     Product(name: "Soccer Ball", price: 19.5, stock: 32)];
 
-func calculateStockValue(productsArray:[Product]) -> Double {
+func calculateStockValue(_ productsArray:[Product]) -> Double {
     return productsArray.reduce(0, {(total, product) -> Double in
         return total + product.stockValue;
     });

@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					667A1A8919F67A4B00060D1B = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -208,6 +209,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -215,6 +217,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -237,6 +240,7 @@
 				667A1A9319F67A4B00060D1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
