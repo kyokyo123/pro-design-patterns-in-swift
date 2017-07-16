@@ -7,19 +7,19 @@ class ProductTableCell : UITableViewCell {
     @IBOutlet weak var stockStepper: UIStepper!
     @IBOutlet weak var stockField: UITextField!
     
-    var product:Product?;
+    var product:Product?
 }
 
 var handler = { (p:Product) in
-    println("Change: \(p.name) \(p.stockLevel) items in stock");
-};
+    print("Change: \(p.name) \(p.stockLevel) items in stock")
+}
 
 class ViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var totalStockLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let logger = Logger<Product>(callback: handler);
+    let logger = Logger<Product>(callback: handler)
     
     var products = [
         Product(name:"Kayak", description:"A boat for one person",
@@ -44,69 +44,69 @@ class ViewController: UIViewController, UITableViewDataSource {
             price:75.0, stockLevel:2),
         Product(name:"Bling-Bling King",
             description:"Gold-plated, diamond-studded King",
-            category:"Chess", price:1200.0, stockLevel:4)];
+            category:"Chess", price:1200.0, stockLevel:4)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayStockTotal();
+        displayStockTotal()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func tableView(tableView: UITableView,
+    func tableView(_ tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int {
-            return products.count;
+            return products.count
     }
     
-    func tableView(tableView: UITableView,
-        cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let product = products[indexPath.row];
-            let cell = tableView.dequeueReusableCellWithIdentifier("ProductCell")
-                as ProductTableCell;
-            cell.product = products[indexPath.row];
-            cell.nameLabel.text = product.name;
-            cell.descriptionLabel.text = product.productDescription;
-            cell.stockStepper.value = Double(product.stockLevel);
-            cell.stockField.text = String(product.stockLevel);
-            return cell;
+    func tableView(_ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let product = products[indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell")
+                as! ProductTableCell
+            cell.product = products[indexPath.row]
+            cell.nameLabel.text = product.name
+            cell.descriptionLabel.text = product.productDescription
+            cell.stockStepper.value = Double(product.stockLevel)
+            cell.stockField.text = String(product.stockLevel)
+            return cell
     }
     
-    @IBAction func stockLevelDidChange(sender: AnyObject) {
+    @IBAction func stockLevelDidChange(_ sender: AnyObject) {
         if var currentCell = sender as? UIView {
             while (true) {
-                currentCell = currentCell.superview!;
+                currentCell = currentCell.superview!
                 if let cell = currentCell as? ProductTableCell {
-                    if let product = cell.product? {
+                    if let product = cell.product {
                         if let stepper = sender as? UIStepper {
-                            product.stockLevel = Int(stepper.value);
+                            product.stockLevel = Int(stepper.value)
                         } else if let textfield = sender as? UITextField {
-                            if let newValue = textfield.text.toInt()? {
-                                product.stockLevel = newValue;
+                            if let newValue =  textfield.text {
+                                product.stockLevel = Int(newValue)!
                             }
                         }
-                        cell.stockStepper.value = Double(product.stockLevel);
-                        cell.stockField.text = String(product.stockLevel);
-                        logger.logItem(product);
+                        cell.stockStepper.value = Double(product.stockLevel)
+                        cell.stockField.text = String(product.stockLevel)
+                        logger.logItem(product)
                     }
-                    break;
+                    break
                 }
             }
-            displayStockTotal();
+            displayStockTotal()
         }
     }
     
     func displayStockTotal() {
         let finalTotals:(Int, Double) = products.reduce((0, 0.0),
             {(totals, product) -> (Int, Double) in
-                return (
-                    totals.0 + product.stockLevel,
-                    totals.1 + product.stockValue
-                );
-        });
+           return (
+               totals.0 + product.stockLevel,
+               totals.1 + product.stockValue
+           )
+        }) 
         
         totalStockLabel.text = "\(finalTotals.0) Products in Stock. "
-            + "Total Value: \(Utils.currencyStringFromNumber(finalTotals.1))";
+            + "Total Value: \(Utils.currencyStringFromNumber(finalTotals.1))" 
     }
 }
